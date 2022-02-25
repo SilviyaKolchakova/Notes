@@ -2,29 +2,27 @@
 {% block page_content %}
 
         <h1>My Notes</h1>
+    {% if not notes %}
         <h2>There are no notes.</h2>
+{#        <h2>Python Web Basics <img src="https://about.softuni.bg/Content/images/home-page/softuni-logo.svg" /></h2>#}
         <!--notes container-->
-    {% if notes %}
+
+    {% else %}
+    {% for note in notes %}
         <div class="note-container">
-            <h2>Today's Tasks <img src="https://www.freeiconspng.com/thumbs/tasks-icon/tasks-icon-9.png" /></h2>
 
+            <h2>{{ note.title}} <img src="{{ note.image_url }}" /></h2>
             <div class="right">
-                <a class="button details" href="/details/3">Details</a>
-                <a class="button edit" href="/edit/3">Edit</a>
-                <a class="button delete" href="/delete/3">Delete</a>
+                <a class="button details" href="{% url 'note details' note.pk %}">Details</a>
+                <a class="button edit" href="{% url 'edit note' note.pk %}">Edit</a>
+                <a class="button delete" href="{% url 'delete note' note.pk %}">Delete</a>
             </div>
+
         </div>
+    {% endfor %}
 
 
-        <div class="note-container">
-            <h2>Python Web Basics <img src="https://about.softuni.bg/Content/images/home-page/softuni-logo.svg" /></h2>
 
-            <div class="right">
-                <a class="button details" href="/details/4">Details</a>
-                <a class="button edit" href="/edit/4">Edit</a>
-                <a class="button delete" href="/delete/4">Delete</a>
-            </div>
-        </div>
     {% endif %}
 
 {% endblock %}

@@ -7,15 +7,15 @@
             <!--profile details container TODO-->
             <div class="note-container">
                 <h2>
-                    Mariya Ivanova
-                    <img src="https://www.nicepng.com/png/detail/249-2492113_work-profile-user-default-female-suit-comments-default.png" />
+                    {{ profile.full_name }}
+                    <img src="{{ profile.image_url }}" />
                 </h2>
-                <p>Age: 28</p>
+                <p>Age: {{ profile.age }}</p>
                 <div>
-                    <p>All notes: 2</p>
+                    <p>All notes: {{ notes_count }}</p>
                 </div>
                 <div class="right">
-                    <a class="button delete" href="/delete/4">Delete</a>
+                    <a class="button delete" href="{% url 'delete profile' %}">Delete</a>
                 </div>
             </div>
             <!--end profile details container-->
